@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 21, 2019 lúc 09:54 AM
+-- Thời gian đã tạo: Th10 10, 2019 lúc 05:56 PM
 -- Phiên bản máy phục vụ: 10.3.16-MariaDB
 -- Phiên bản PHP: 7.2.19
 
@@ -19,62 +19,8 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `dichvu1`
+-- Cơ sở dữ liệu: `dichvudata`
 --
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `cart`
---
-
-CREATE TABLE `cart` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `item_id` int(11) NOT NULL,
-  `createdate` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Bẫy `cart`
---
-DELIMITER $$
-CREATE TRIGGER `ngaythich` BEFORE INSERT ON `cart` FOR EACH ROW BEGIN
-  SET NEW.createdate = UNIX_TIMESTAMP();
-END
-$$
-DELIMITER ;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `contact`
---
-
-CREATE TABLE `contact` (
-  `id` int(11) NOT NULL,
-  `petitioner` int(11) NOT NULL,
-  `acceptor` int(11) NOT NULL,
-  `status` int(11) NOT NULL,
-  `sent_date` double NOT NULL,
-  `accept_date` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Bẫy `contact`
---
-DELIMITER $$
-CREATE TRIGGER `ngaychapnhan` BEFORE UPDATE ON `contact` FOR EACH ROW BEGIN
-  SET NEW.accept_date = UNIX_TIMESTAMP();
-END
-$$
-DELIMITER ;
-DELIMITER $$
-CREATE TRIGGER `ngaygui` BEFORE INSERT ON `contact` FOR EACH ROW BEGIN
-  SET NEW.sent_date = UNIX_TIMESTAMP();
-END
-$$
-DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -87,7 +33,7 @@ CREATE TABLE `item` (
   `type_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `request` varchar(50) NOT NULL,
+  `price` varchar(50) NOT NULL,
   `image` varchar(100) NOT NULL,
   `place` varchar(100) NOT NULL,
   `description` text NOT NULL,
@@ -100,7 +46,7 @@ CREATE TABLE `item` (
 -- Đang đổ dữ liệu cho bảng `item`
 --
 
-INSERT INTO `item` (`id`, `type_id`, `user_id`, `name`, `request`, `image`, `place`, `description`, `view`, `status`, `createdate`) VALUES
+INSERT INTO `item` (`id`, `type_id`, `user_id`, `name`, `price`, `image`, `place`, `description`, `view`, `status`, `createdate`) VALUES
 (1, 1, 1, 'Máy lạnh Panasonic Inverter cũ 1140', '5,000,000đ', 'thumb_1571018621_may-lanh-panasonic-inverter-cu-1140.jpg', 'Hà Nội', '<strong><a href=\"https://thanhlyhangcu.vn/may-lanh-panasonic-inverter-cu-1140/\"><span style=\"color:#2980b9;\">M&aacute;y điều h&ograve;a Panasonic Inverter</span></a>&nbsp;</strong>được đ&aacute;nh gi&aacute; l&agrave; mang kiểu d&aacute;ng đẳng cấp v&agrave; tinh tế từ mọi chi tiết, đẹp ở mọi g&oacute;c nh&igrave;n. Ph&ograve;ng ngủ hay ph&ograve;ng l&agrave;m việc của bạn sẽ trở n&ecirc;n sang trọng hơn v&agrave; tạo cảm gi&aacute;c dễ chịu, th&iacute;ch th&uacute; khi bước v&agrave;o ph&ograve;ng. Mặt nạ c&oacute; thiết kế dạng phẳng rất dễ lau ch&ugrave;i khi vệ sinh m&aacute;y.<br>', 1000, 0, 1573402580),
 (2, 1, 2, 'Máy lạnh Daikin 2 ngựa cũ 1135', '6,500,000đ', 'thumb_1570178218_may-lanh-daikin-inverter-thanh-ly-2-ngua.jpg', 'Hà Nội', '<span style=\"font-size:16px;\">Đặc điểm nổi bật của <a href=\"https://thanhlyhangcu.vn/may-lanh-daikin-inverter-thanh-ly-2-ngua/\"><strong>m&aacute;y lạnh Daikin&nbsp;2 ngựa thanh l&yacute;</strong></a></span><br>Tiết kiệm điện tối ưu cho gia đ&igrave;nh với sự kết hợp giữa c&ocirc;ng nghệ&nbsp;Inverter&nbsp;v&agrave;&nbsp;Econo, tiết kiệm 60%&nbsp;điện năng so với th&ocirc;ng thường .<br>Luồng gi&oacute; thoải m&aacute;i Coanda&nbsp;tạo cảm gi&aacute;c thư gi&atilde;n cho người sử dụng.<br>L&agrave;m lạnh nhanh&nbsp;tức th&igrave; sau khi khởi động m&aacute;y.<br>Cảm biến mắt thần th&ocirc;ng minh Intelligent Eye&nbsp;tự động tăng 2 độ C khi kh&ocirc;ng c&oacute; người trong ph&ograve;ng để tiết kiệm điện.<br>Phin lọc khử m&ugrave;i x&uacute;c t&aacute;c quang&nbsp;Apatit Titan&nbsp;kh&aacute;ng khuẩn, khử m&ugrave;i hiệu quả.<br>Bảo h&agrave;nh 4 th&aacute;ng với c&aacute;c d&ograve;ng m&aacute;y lạnh<br>Tặng k&egrave;m ống đồng theo m&aacute;y<br>Vận chuyển miễn ph&iacute; đến tận nh&agrave;<br>', 0, 0, 1573402580),
 (3, 1, 3, 'Tủ lạnh Inverter Aqua 1126', '6,500,000đ', '1562744753_tu-lanh-panasonic-inverter-1000.jpg', 'Hà Nội', '<u><em><strong><a href=\"https://thanhlyhangcu.vn/tu-lanh-inverter-aqua-1126/\"><span style=\"color:#8e44ad;\">Tủ lạnh Inverter Aqua</span></a></strong></em></u>&nbsp;c&oacute; thiết kế hiện đại với 4 cửa c&ugrave;ng c&aacute;c ngăn bảo quản ri&ecirc;ng biệt gi&uacute;p gia đ&igrave;nh bạn ph&acirc;n loại thực phẩm để bảo quản được tốt hơn, tr&aacute;nh lẫn m&ugrave;i v&agrave; sức chứa sẽ được nhiều hơn. Tủ lạnh ngăn đ&aacute; nằm dưới được thiết kế dạng k&eacute;o trượt rất tiện lợi cho bạn lấy c&aacute;c loại thực phẩm được đặt s&acirc;u b&ecirc;n trong.<br>', 300, 0, 1573402580),
@@ -352,22 +298,6 @@ DELIMITER ;
 --
 
 --
--- Chỉ mục cho bảng `cart`
---
-ALTER TABLE `cart`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `3` (`user_id`),
-  ADD KEY `4` (`item_id`);
-
---
--- Chỉ mục cho bảng `contact`
---
-ALTER TABLE `contact`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `1` (`petitioner`),
-  ADD KEY `2` (`acceptor`);
-
---
 -- Chỉ mục cho bảng `item`
 --
 ALTER TABLE `item`
@@ -392,18 +322,6 @@ ALTER TABLE `user`
 --
 
 --
--- AUTO_INCREMENT cho bảng `cart`
---
-ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT cho bảng `contact`
---
-ALTER TABLE `contact`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT cho bảng `item`
 --
 ALTER TABLE `item`
@@ -424,20 +342,6 @@ ALTER TABLE `user`
 --
 -- Các ràng buộc cho các bảng đã đổ
 --
-
---
--- Các ràng buộc cho bảng `cart`
---
-ALTER TABLE `cart`
-  ADD CONSTRAINT `3` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `4` FOREIGN KEY (`item_id`) REFERENCES `item` (`id`);
-
---
--- Các ràng buộc cho bảng `contact`
---
-ALTER TABLE `contact`
-  ADD CONSTRAINT `1` FOREIGN KEY (`petitioner`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `2` FOREIGN KEY (`acceptor`) REFERENCES `user` (`id`);
 
 --
 -- Các ràng buộc cho bảng `item`

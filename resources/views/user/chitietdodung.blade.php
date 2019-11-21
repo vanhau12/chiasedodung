@@ -30,7 +30,7 @@
 				<div class="product_slider_img">
 					<div id="vertical">
 						<div data-thumb="img/product/single-product/product_1.png">
-							<img src="imagesitems/{{ $data['item']->image }} />
+							<img src="{{ asset('') }}/imagesitems/{{ $data['item']->image }} "/>
 						</div>
 					</div>
 				</div>
@@ -39,10 +39,10 @@
 				<div class="s_product_text">
 					<!--  <h5>previous <span>|</span> next</h5> -->
 					<h3>{{ $data['item']->name }}</h3>
-					<h2>{{ $data['item']->price }}</h2>
+					<p><span>Yêu cầu</span> : {{ $data['item']->request }}</p>
 					<ul class="list">
 						<li>
-							<a class="active" href="">
+							<a class="active" href="{{route('danhmuc',$data['type']->id)}}">
 								<span>Danh mục</span> : {{ $data['type']->name }}</a>
 						</li>
 						<li>
@@ -57,50 +57,51 @@
 						<li>
 							<span>Địa điểm</span> : {{ $data['item']->place }}
 						</li>
-						</ul>
-						<p>
-							{{ $data['item']->description }}
-						</p>
-
-						<!-- phần yêu thích -->
-						<div class="card_area d-flex justify-content-between align-items-center">
-								<!-- <a href="" class="like_us"> --> <i class="ti-heart"></i> <!-- </a> -->
-							</div>
-						</div>
+					</ul>
+					<p>
+                        @php
+                            echo $data['item']->description;
+                        @endphp
+					</p>
+    				<!-- phần yêu thích -->
+					<div class="card_area d-flex justify-content-between align-items-center">
+						{{-- <a href="" class="like_us"><i class="ti-heart"></i></a> --}}
 					</div>
 				</div>
 			</div>
 		</div>
-		<!--================End Single Product Area =================-->
+	</div>
+</div>
+<!--================End Single Product Area =================-->
 
-		<!-- product_list part start-->
-		<section class="product_list best_seller">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-lg-12">
-						<div class="section_tittle text-center">
-							<h2>Xem nhiều nhất</h2>
-						</div>
-					</div>
-				</div>
-				<div class="row align-items-center justify-content-between">
-					<div class="col-lg-12">
-						<div class="best_product_slider owl-carousel">
-							<?php foreach ($data['topitems'] as $item): ?>
-								<div class="single_product_item">
-									<img src="imagesitems/{{ $item->image }}" alt="">
-									<div class="single_product_text">
-										<h4 class="text-center">{{ $item->name }}</h4>
-										<h3 class="text-center">{{ $item->price }}</h3>
-									</div>
-								</div>
-							<?php endforeach ?>
-						</div>
-					</div>
+<!-- product_list part start-->
+<section class="product_list best_seller">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-lg-12">
+				<div class="section_tittle text-center">
+					<h2>Xem nhiều nhất</h2>
 				</div>
 			</div>
-		</section>
-		<!-- product_list part end-->
-@endsession
+		</div>
+		<div class="row align-items-center justify-content-between">
+			<div class="col-lg-12">
+				<div class="best_product_slider owl-carousel">
+                    @foreach ($data['topitems'] as $item)
+                       <div class="single_product_item">
+                            <img src="{{ asset('') }}/imagesitems/{{ $item->image }}" alt="">
+                            <div class="single_product_text">
+                                <h4 class="text-center">{{ $item->name }}</h4>
+                                <h3 class="text-center">{{ $item->request }}</h3>
+                            </div>
+                        </div>
+                    @endforeach
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- product_list part end-->
+@endsection
 
 

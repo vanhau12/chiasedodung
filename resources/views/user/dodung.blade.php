@@ -36,7 +36,7 @@
    							<ul class="list">
    								<?php foreach ($data['types'] as $value): ?>
    									<li>
-   										<a href="" style="color: #0066CC;">{{$value->name}}</a>
+   										<a href="{{route('danhmuc',$value->id)}}" style="color: #0066CC;">{{$value->name}}</a>
    										<!-- <span>(250)</span> -->
    									</li>
    								<?php endforeach ?>
@@ -60,7 +60,7 @@
    						</div>
    					</aside>
 
-   					<!-- <aside class="left_widgets p_filter_widgets price_rangs_aside">
+   					<!-- <aside class="left_widgets p_filter_widgets request_rangs_aside">
    						<div class="l_w_title">
    							<h3>Lọc Theo Giá</h3>
    						</div>
@@ -69,10 +69,10 @@
    								<div id="slider-range"></div>
    								<input type="text" class="js-range-slider" value="" />
    								<div class="d-flex">
-   									<div class="price_text">
-   										<p>Price :</p>
+   									<div class="request_text">
+   										<p>request :</p>
    									</div>
-   									<div class="price_value d-flex justify-content-center">
+   									<div class="request_value d-flex justify-content-center">
    										<input type="text" class="js-input-from"  readonly />
    										<span>to</span>
    										<input type="text" class="js-input-to"readonly />
@@ -115,7 +115,7 @@
    											<img class="card-img-top img-thumbnail" src="imagesitems/{{ $item->image }}" alt="Card image cap">
    											<div class="card-block">
    												<h5 class="card-title">{{ $item->name }}</h5>
-   												<p class="card-text">Giá : <b>{{ $item->price }}</b></p>
+   												<p class="card-text">Giá : <b>{{ $item->request }}</b></p>
    												<p class="card-text"><small><a href="{{route('chitiet',$item->id)}}" class="btn btn-outline-warning btn-xs">Chi tiết <i class="fa fa-chevron-right"></i></a></small></p>
    											</div>
    										</div>

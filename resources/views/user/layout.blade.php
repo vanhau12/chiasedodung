@@ -75,11 +75,6 @@
                                     <tr>
                                         <td>Họ và Tên </td>
                                         <td><input type="text" class="form-control"  name="name" value="" required="" placeholder="Họ và Tên..."></td>
-                                        @error('name')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
                                     </tr>
                                     <tr>
                                         <td>Email </td>
@@ -92,7 +87,7 @@
 
                                     </tr>
                                     <tr>
-                                        <td>Nhập Lại Mật Khẩu </td>
+                                        <td>Nhập Lại Mật Khẩu</td>
                                         <td> <input type="password" class="form-control" id="cfpass" name="cfpass" value="" placeholder="Nhập Lại Mật Khẩu"></td>
 
                                     </tr>
@@ -105,7 +100,6 @@
                                         </tr>
 
                                     </table>
-
                                     </div>
                                     <div class="modal-footer" style="background-color: #04B4AE">
                                         <button type="submit" class="btn btn-default" name="sub" value="user">Đăng
@@ -181,7 +175,7 @@
                                 <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
                                     <ul class="navbar-nav">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="aa">Trang Chủ</a>
+                                            <a class="nav-link" href="{{route('trangchu')}}">Trang Chủ</a>
                                         </li>
                                         <li class="nav-item dropdown">
                                             <a class="nav-link " href="{{route('dodungchiase')}}">
@@ -189,7 +183,7 @@
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link " href=""
+                                            <a class="nav-link " href="{{route('getdangdodung')}}"
                                                 >
                                                 Đăng đồ dùng
                                             </a>
@@ -201,13 +195,13 @@
                                         </li>
 
                                         <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_3"
+                                            <a class="nav-link dropdown-toggle" href="" id="navbarDropdown_3"
                                             role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            tài khoản
+                                           tài khoản
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                            <a class="dropdown-item" href="">Sản phẩm tôi bán</a>
-                                            <!-- <a class="dropdown-item" href="yeuthich.html">Yêu Thích <i class="ti-heart"></i></a> -->
+                                            <a class="dropdown-item" href="">Đồ dùng của tôi</a>
+                                            <!-- <a class="dropdown-item" href="yeuthich.html">Yêu Thích<i class="ti-heart"></i></a> -->
                                             <a class="dropdown-item" href="aaNguoidung/thong_tin_tai_khoan/"> Thông tin cá nhân</a>
                                             <a class="dropdown-item" href="">đổi mật khẩu</a>
                                             <a class="dropdown-item" href="{{ route('dangxuat')}}">thoát</a>
@@ -311,27 +305,26 @@
             <div class="row justify-content-around">
                 <div class="col-sm-6 col-lg-2">
                     <div class="single_footer_part">
-                        <h4>Top Products</h4>
+                        <h4>Top Người dùng</h4>
                         <ul class="list-unstyled">
-                            <li><a href="">Managed Website</a></li>
-                            <li><a href="">Manage Reputation</a></li>
-                            <li><a href="">Power Tools</a></li>
-                            <li><a href="">Marketing Service</a></li>
+                            <li><a href="">Nguyễn Văn Bình</a></li>
+                            <li><a href="">Trịnh Tâm</a></li>
+                            <li><a href="">Vũ Hồng</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-2">
                     <div class="single_footer_part">
-                        <h4>Quick Links</h4>
+                        <h4>Góp ý</h4>
                         <ul class="list-unstyled">
-                            <li><a href="">Jobs</a></li>
-                            <li><a href="">Brand Assets</a></li>
-                            <li><a href="">Investor Relations</a></li>
-                            <li><a href="">Terms of Service</a></li>
+                            <li><a href="">Email</a></li>
+                            <li><a href="">Facebook</a></li>
+                            <!-- <li><a href="">Investor Relations</a></li>
+                            <li><a href="">Terms of Service</a></li> -->
                         </ul>
                     </div>
                 </div>
-                <div class="col-sm-6 col-lg-2">
+                <!-- <div class="col-sm-6 col-lg-2">
                     <div class="single_footer_part">
                         <h4>Features</h4>
                         <ul class="list-unstyled">
@@ -352,21 +345,21 @@
                             <li><a href="">Agencies</a></li>
                         </ul>
                     </div>
-                </div>
+                </div> -->
                 <div class="col-sm-6 col-lg-4">
                     <div class="single_footer_part">
-                        <h4>Newsletter</h4>
-                        <p>Heaven fruitful doesn't over lesser in days. Appear creeping
+                        <!-- <h4>Newsletter</h4> -->
+                        <p>Không có hạnh phúc trong việc sở hữu hay đón nhận, chỉ có hạnh phúc khi cho đi.
                         </p>
                         <div id="mc_embed_signup">
                             <form target="_blank"
                                 action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
                                 method="get" class="subscribe_form relative mail_part">
-                                <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address"
+                                <input type="email" name="email" id="newsletter-form-email" placeholder="Email... "
                                     class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
-                                    onblur="this.placeholder = ' Email Address '">
+                                    onblur="this.placeholder = ' Email... '">
                                 <button type="submit" name="submit" id="newsletter-submit"
-                                    class="email_icon newsletter-submit button-contactForm">subscribe</button>
+                                    class="email_icon newsletter-submit button-contactForm">Đăng ký</button>
                                 <div class="mt-10 info"></div>
                             </form>
                         </div>
@@ -380,9 +373,9 @@
                 <div class="row">
                     <div class="col-lg-8">
                         <div class="copyright_text">
-                            <P><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></P>
+                            <P>Thực hiện bởi Nhóm 3 ( Hậu, Phương ) - KTPM1 - K11<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            <!-- Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a> -->
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></P>
                         </div>
                     </div>
                     <div class="col-lg-4">
@@ -437,13 +430,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="ckeditor/ckeditor.js"></script>
     <script src="ckfinder/ckfinder.js"></script>
     <script>
-            CKEDITOR.replace('mota', {
-                filebrowserBrowseUrl: '/ckfinder/ckfinder.html',
-                filebrowserImageBrowseUrl: './ckfinder/ckfinder.html?type=Images',
-                filebrowserFlashBrowseUrl: '/ckfinder/ckfinder.html?type=Flash',
-                filebrowserUploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-                filebrowserImageUploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-                filebrowserFlashUploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+            CKEDITOR.replace('des', {
+                filebrowserBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html',
+                filebrowserImageBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html?type=Images',
+                filebrowserFlashBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html?type=Flash',
+                filebrowserUploadUrl: '{{asset("")}}ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+                filebrowserImageUploadUrl: '{{asset("")}}ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+                filebrowserFlashUploadUrl: '{{asset("")}}ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
             });
         </script>
 

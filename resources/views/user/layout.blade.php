@@ -202,15 +202,15 @@
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
                                             <a class="dropdown-item" href="">Đồ dùng của tôi</a>
                                             <!-- <a class="dropdown-item" href="yeuthich.html">Yêu Thích<i class="ti-heart"></i></a> -->
-                                            <a class="dropdown-item" href="aaNguoidung/thong_tin_tai_khoan/"> Thông tin cá nhân</a>
-                                            <a class="dropdown-item" href="">đổi mật khẩu</a>
+                                            <a class="dropdown-item" href="{{route('gettttaikhoan',Session('login'))}}"> Thông tin tài khoản</a>
+                                            <a class="dropdown-item" href="{{route('getdoimatkhau')}}">đổi mật khẩu</a>
                                             <a class="dropdown-item" href="{{ route('dangxuat')}}">thoát</a>
 
                                         </div>
                                     </li>
                                     @if(Session::has('admin'))
                                     <li class="nav-item">
-                                        <a class="nav-link " href="Quanly"
+                                        <a class="nav-link " href="{{route('quanly')}}"
                                             >
                                             Quản trị
                                         </a>
@@ -425,7 +425,7 @@
     <script src="js1/mail-script.js"></script>
     <!-- custom js -->
     <script src="js1/custom.js"></script>
-<!-- phần thêm cần -->
+    <!-- phần thêm cần -->
     <script type="text/javascript" src="js1/filevalidation.js"></script>
     <script src="ckeditor/ckeditor.js"></script>
     <script src="ckfinder/ckfinder.js"></script>

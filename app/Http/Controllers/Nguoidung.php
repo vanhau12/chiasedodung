@@ -67,27 +67,67 @@ class Nguoidung extends Controller
         Session::flush();
         return redirect()->route('trangchu');
     }
+    public function gettttaikhoan($id)
+    {
+        $data['title'] = "Thông tin tài khoản";
+        $data['user'] = DB::table('user')->where('id',$id)->first();
+        return view('user.thongtintaikhoan',['data'=>$data]);
+    }
+    public function tttaikhoan($id,Request $req)
+    {
+        DB::table('user')->where('id',$id)
+            ->update([
+                'name' => $req->name,
+                'phone' => $req->phone
+                ]);
+        return redirect()->route('gettttaikhoan',$id)->with('success', 'Cập nhật thành công!');
+    }
+    public function getdoimatkhau()
+    {
+        $data['title'] = "Đổi mật khẩu";
+        return view('user.doimatkhau',['data'=>$data]);
+    }
+    public function doimatkhau($id,Request $req)
+    {
+        $this->validate($req,
+            [
+                'mkmoi'=>'min:6|max:30',
+                'cfmkmoi'=>'same:mkmoi',
+            ],
+            [
+                'mkmoi.min'=>'Mật khẩu ít nhất 6 kí tự',
+                'mkmoi.max'=>'Mật khẩu nhiều nhất 30 kí tự',
+                'cfmkmoi.same'=>'Nhập lại khẩu mới không đúng',
+            ]);
+        $user = DB::table('user')->where('id',$id)->first();
+        if(md5($req->mkcu) == $user->password){
+            DB::table('user')->where('id', $user->id)->update(['password' => md5($req->mkmoi)]);
+            return redirect()->route('getdoimatkhau')->with('success', 'Đổi mật khẩu thành công!');
+        }else{
+            return redirect()->route('getdoimatkhau')->with('false', 'Mật khẩu cũ không đúng!');
+        }
+    }
 
     public function dodungchiase()
     {
         $data['title'] = "Đồ dùng chia sẻ";
         $data['types'] = DB::table('type_item')->get();
-        $data['items'] = DB::table('item')->paginate(6);
+        $data['items'] = DB::table('item')->where('status',0)->paginate(6);
         $data['topitems'] = DB::table('item')->orderBy('view', 'DESC')->limit(5)->get();
         $data['places'] = array('Hà Nội','Hải Phòng','TP.Hồ Chí Minh');
 
-        $data['tongso'] = count(DB::table('item')->get());
+        $data['tongso'] = count(DB::table('item')->where('status',0)->get());
         return view('user.dodung',['data'=>$data]);
     }
     public function danhmuc($type_id)
     {
         $data['title'] = "Đồ dùng chia sẻ";
         $data['types'] = DB::table('type_item')->get();
-        $data['items'] = DB::table('item')->where('type_id',$type_id)->paginate(6);
+        $data['items'] = DB::table('item')->where('status',0)->where('type_id',$type_id)->paginate(6);
         $data['topitems'] = DB::table('item')->orderBy('view', 'DESC')->limit(5)->get();
         $data['places'] = array('Hà Nội','Hải Phòng','TP.Hồ Chí Minh');
 
-        $data['tongso'] =count(DB::table('item')->where('type_id',$type_id)->get());
+        $data['tongso'] =count(DB::table('item')->where('status',0)->where('type_id',$type_id)->get());
         return view('user.dodung',['data'=>$data]);
     }
 
@@ -111,5 +151,33 @@ class Nguoidung extends Controller
         $data['title'] = "Chia sẻ đồ dùng";
         $data['types'] = DB::table('type_item')->get();
         return view('user.dangdodung',['data'=>$data]);
+    }
+    public function dangdodung(Request $req)
+    {
+        if ($req->hasFile('image')) {
+            $file = $req->file('image');
+            $name = $this->imagename($file->getClientOriginalName());
+            // $avatar = time() . "_news_" . $name;
+            // while (file_exists('images/news/' . $avatar)) {
+            //     $avatar = time() . "_news_" . $name;
+            // }
+            $file->move('imagesitems/', $name);
+
+            $image = $name;
+        } else {
+            $image = 'default.jpg';
+        }
+        DB::table('item')->insert([
+            'type_id'=>$req->type,
+            'user_id'=>Session('login'),
+            'name'=>$req->name,
+            'request'=>$req->yeucau,
+            'image'=>$image,
+            'place'=>$req->place,
+            'description'=>$req->des,
+            'view'=>0,
+            'status'=>1
+        ]);
+        return redirect()->route('getdangdodung')->with('success', 'Chia sẻ đồ dùng thành công!');
     }
 }

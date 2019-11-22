@@ -178,6 +178,62 @@ class Nguoidung extends Controller
             'view'=>0,
             'status'=>1
         ]);
-        return redirect()->route('getdangdodung')->with('success', 'Chia sẻ đồ dùng thành công!');
+        return redirect()->route('getdangdodung')->with('success', 'Chia sẻ đồ dùng thành công! Chờ xét duyệt!');
+    }
+
+    public function dodungcuatoi($id)
+    {
+        $data['title'] = "Đồ dùng của tôi";
+        $data['postitems'] = DB::table('item')->where('status',0)->where('user_id',$id)->orderBy('id','DESC')->paginate(3);
+        $data['waititems'] = DB::table('item')->where('status',1)->where('user_id',$id)->orderBy('id','DESC')->paginate(3);
+        return view('user.dodungcuatoi',['data'=>$data]);
+    }
+    public function xoadodung($id)
+    {
+        DB::table('item')->where('id',$id)->delete();
+        return redirect()->route('dodungcuatoi',Session('login'));
+    }
+    public function getsuadodung($id)
+    {
+        $data['title'] = "Đồ dùng của tôi";
+        $data['types'] = DB::table('type_item')->get();
+        $data['item'] = DB::table('item')->where('id',$id)->first();
+        // var_dump($data['item']);
+        // die();
+
+        return view('user.suadodung',['data'=>$data]);
+    }
+    public function suadodung($id,Request $req)
+    {
+        if ($req->hasFile('image')) {
+            $file = $req->file('image');
+            $name = $this->imagename($file->getClientOriginalName());
+            $file->move('imagesitems/', $name);
+            $image = $name;
+
+            DB::table('item')->where('id',$id)->update([
+            'type_id'=>$req->type,
+            'user_id'=>Session('login'),
+            'name'=>$req->name,
+            'request'=>$req->yeucau,
+            'image'=>$image,
+            'place'=>$req->place,
+            'description'=>$req->des,
+            'view'=>0,
+            'status'=>1
+        ]);
+        } else {
+            DB::table('item')->where('id',$id)->update([
+            'type_id'=>$req->type,
+            'user_id'=>Session('login'),
+            'name'=>$req->name,
+            'request'=>$req->yeucau,
+            'place'=>$req->place,
+            'description'=>$req->des,
+            'view'=>0,
+            'status'=>1
+        ]);
+        }
+        return redirect()->route('getsuadodung',$id)->with('success', 'Cập nhật thành công! Chờ xét duyệt!');
     }
 }

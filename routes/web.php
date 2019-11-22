@@ -29,6 +29,11 @@ Route::get('/chi-tiet-do-dung/{id}', 'Nguoidung@chitiet')->name('chitiet');
 Route::get('/dang-do-dung', 'Nguoidung@getdangdodung')->name('getdangdodung');
 Route::post('/dang_do_dung', 'Nguoidung@dangdodung')->name('dangdodung');
 
+Route::get('/do-dung-cua-toi/{id}', 'Nguoidung@dodungcuatoi')->name('dodungcuatoi');
+Route::get('/xoa-do-dung/{id}', 'Nguoidung@xoadodung')->name('xoadodung');
+Route::get('/sua-do-dung/{id}', 'Nguoidung@getsuadodung')->name('getsuadodung');
+Route::post('/sua_do_dung/{id}', 'Nguoidung@suadodung')->name('suadodung');
+
 
 
 //trang quản lý

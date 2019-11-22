@@ -44,13 +44,13 @@
                 <input type="text" class="form-control" required name="name">
             </div>
             <div class="form-group">
-                <label for="">Loại sản phẩm:</label><br>
+                <label for="">Loại sản phẩm:</label>
                 <select name="type" id="" class="form-control">
                     @foreach ($data['types'] as $type)
                         <option value="{{ $type->id }}">{{ $type->name }}</option>
                     @endforeach
-                </select><br>
-            </div><br>
+                </select>
+            </div>
             <div class="form-group">
                 <label for="">Yêu cầu:</label>
                 <input type="text" class="form-control" required name="yeucau" placeholder="(nhập các yêu cầu để chia sẻ như: cho mượn,trao đổi, cho thuê, bán, giá ...)">

@@ -4,40 +4,36 @@
 {{$data['title']}}
 @stop
 @section('content')
-<!-- breadcrumb start-->
-<section class="breadcrumb breadcrumb_bg">
-	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-lg-8">
-				<div class="breadcrumb_iner">
-					<div class="breadcrumb_iner_item">
-						<h2>Chi Tiết Đồ Dùng</h2>
-						<p>Trang Chủ <span>-</span> Chi Tiết Đồ Dùng</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<!-- breadcrumb start-->
-<!--================End Home Banner Area =================-->
+{{-- banner --}}
+<div class="hero-wrap hero-bread" style="background-image: url('img/banner/banner-bg.jpg'); margin-top: 70px;">
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+            <p class="breadcrumbs"><span class="mr-2"><a href="{{route('trangchu')}}">Trang chủ</a></span></p>
+            <h1 class="mb-0 bread">Chi tiết đồ dùng</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+{{-- end banner --}}
 
 <!--================Single Product Area =================-->
 <div class="product_image_area section_padding">
 	<div class="container">
 		<div class="row s_product_inner justify-content-between">
-			<div class="col-sm-6">
+			<div class="col-sm-5">
 				<div class="product_slider_img">
 					<div id="vertical">
 						<div data-thumb="img/product/single-product/product_1.png">
-							<img src="{{ asset('') }}/imagesitems/{{ $data['item']->image }} "/>
+							<img style="width: 400px; height: 300px" src="{{ asset('') }}/imagesitems/{{ $data['item']->image }} "/>
 						</div>
 					</div>
 				</div>
 			</div>
+            <div class="col-sm-1">
+            </div>
 			<div class="col-sm-6">
 				<div class="s_product_text">
-					<!--  <h5>previous <span>|</span> next</h5> -->
 					<h3>{{ $data['item']->name }}</h3>
 					<p><span>Yêu cầu</span> : {{ $data['item']->request }}</p>
 					<ul class="list">
@@ -73,6 +69,8 @@
 	</div>
 </div>
 <!--================End Single Product Area =================-->
+
+
 
 <!-- product_list part start-->
 <section class="product_list best_seller">

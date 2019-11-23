@@ -112,7 +112,7 @@ class Nguoidung extends Controller
     {
         $data['title'] = "Đồ dùng chia sẻ";
         $data['types'] = DB::table('type_item')->get();
-        $data['items'] = DB::table('item')->where('status',0)->paginate(6);
+        $data['items'] = DB::table('item')->where('status',0)->paginate(5);
         $data['topitems'] = DB::table('item')->orderBy('view', 'DESC')->limit(5)->get();
         $data['places'] = array('Hà Nội','Hải Phòng','TP.Hồ Chí Minh');
 
@@ -137,11 +137,11 @@ class Nguoidung extends Controller
         $data['title'] = "Chi tiết đồ dùng";
         $data['item'] = $item;
         $data['topitems'] = DB::table('item')->orderBy('view', 'DESC')->limit(5)->get();
-        // $item->view = $item->view+1;
-        // DB::table('item')->where('id',$id)->insert([
-        //     'view' => $item->view
-        // ]);
-        // die();
+        $view = $item->view+1;
+        DB::table('item')->where('id',$id)->update([
+            'view'=>$view
+            ]);
+
         $data['type'] = DB::table('type_item')->where('id',$item->type_id)->first();
         $data['user'] = DB::table('user')->where('id',$item->user_id)->first();
         return view('user.chitietdodung',['data'=>$data]);
@@ -157,10 +157,6 @@ class Nguoidung extends Controller
         if ($req->hasFile('image')) {
             $file = $req->file('image');
             $name = $this->imagename($file->getClientOriginalName());
-            // $avatar = time() . "_news_" . $name;
-            // while (file_exists('images/news/' . $avatar)) {
-            //     $avatar = time() . "_news_" . $name;
-            // }
             $file->move('imagesitems/', $name);
 
             $image = $name;
@@ -186,6 +182,7 @@ class Nguoidung extends Controller
         $data['title'] = "Đồ dùng của tôi";
         $data['postitems'] = DB::table('item')->where('status',0)->where('user_id',$id)->orderBy('id','DESC')->paginate(3);
         $data['waititems'] = DB::table('item')->where('status',1)->where('user_id',$id)->orderBy('id','DESC')->paginate(3);
+        $data['passitems'] = DB::table('item')->where('status',-1)->where('user_id',$id)->orderBy('id','DESC')->paginate(3);
         return view('user.dodungcuatoi',['data'=>$data]);
     }
     public function xoadodung($id)
@@ -198,9 +195,6 @@ class Nguoidung extends Controller
         $data['title'] = "Đồ dùng của tôi";
         $data['types'] = DB::table('type_item')->get();
         $data['item'] = DB::table('item')->where('id',$id)->first();
-        // var_dump($data['item']);
-        // die();
-
         return view('user.suadodung',['data'=>$data]);
     }
     public function suadodung($id,Request $req)
@@ -232,8 +226,84 @@ class Nguoidung extends Controller
             'description'=>$req->des,
             'view'=>0,
             'status'=>1
-        ]);
+            ]);
         }
         return redirect()->route('getsuadodung',$id)->with('success', 'Cập nhật thành công! Chờ xét duyệt!');
     }
+
+    // xử lý phần liên hệ
+    public function yeucau($id)
+    {
+        $data['title'] = "Yêu cầu";
+        $data['getcontact'] = DB::table('contact')->where('acceptor',$id)->orderBy('status','ASC')->paginate(3);
+        foreach ($data['getcontact'] as $value) {
+            $item = DB::table('item')->where('id',$value->item_id)->first();
+            $user = DB::table('user')->where('id',$value->petitioner)->first();
+            $value->name = $item->name;
+            $value->uname = $user->name;
+            $value->uphone = $user->phone;
+            $value->uemail = $user->email;
+        }
+        $data['sentcontact'] = DB::table('contact')->where('petitioner',$id)->orderBy('status','ASC')->paginate(3);
+        foreach ($data['sentcontact'] as $value) {
+            $item = DB::table('item')->where('id',$value->item_id)->first();
+            $user = DB::table('user')->where('id',$value->acceptor)->first();
+            $value->name = $item->name;
+            $value->uname = $user->name;
+            $value->uphone = $user->phone;
+            $value->uemail = $user->email;
+        }
+        $data['passitems'] = DB::table('item')->where('status',2)->where('user_id',$id)->orderBy('id','DESC')->paginate(3);
+        return view('user.yeucau',['data'=>$data]);
+    }
+    public function chapnhan($id)
+    {
+        // đổi tt liên hệ sang 1 = chấp nhận
+        DB::table('contact')->where('id',$id)->update([
+            'status'=>1
+            ]);
+        // đổi tt đồ dùng sang 2 = ko hiện lên trang web()
+        $contact = DB::table('contact')->where('id',$id)->first();
+        DB::table('item')->where('id',$contact->item_id)->update([
+            'status'=>2
+            ]);
+        return redirect()->route('yeucau',Session('login'));
+    }
+    public function tuchoi($id)
+    {
+        // đổi tt liên hệ sang 2 = từ chối
+        DB::table('contact')->where('id',$id)->update([
+            'status'=>2
+            ]);
+        // đặt lại tt đồ dùng nếu đã chấp nhận trc đó
+        $contact = DB::table('contact')->where('id',$id)->first();
+        DB::table('item')->where('id',$contact->item_id)->update([
+            'status'=>0
+            ]);
+        return redirect()->route('yeucau',Session('login'));
+    }
+    public function xoaloinhan($id)
+    {
+        DB::table('contact')->where('id',$id)->delete();
+        return redirect()->route('yeucau',Session('login'));
+    }
+    public function yeuthich($id)
+    {
+        $data['title'] = "Yêu thích";
+        $data['cart'] = DB::table('cart')->where('user_id',$id)->orderBy('id','DESC')->paginate(5);
+        foreach ($data['cart'] as $value) {
+            $item = DB::table('item')->where('id',$value->item_id)->first();
+            $value->name = $item->name;
+            $value->image = $item->image;
+            $value->request = $item->request;
+            $value->place = $item->place;
+        }
+        return view('user.yeuthich',['data'=>$data]);
+    }
+     public function bothich($id)
+    {
+        DB::table('cart')->where('id',$id)->delete();
+        return redirect()->route('yeuthich',Session('login'));
+    }
+
 }

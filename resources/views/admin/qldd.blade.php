@@ -1,3 +1,9 @@
+@extends('admin/layout')
+@section('title')
+@parent
+{{$data['title']}}
+@stop
+@section('content')
 <div class="content">
 	<div class="animated fadeIn">
 		<div class="row">
@@ -18,7 +24,7 @@
             		<div class="row align-items-center latest_product_inner">
             			<div class="col-lg-3 col-sm-6">
             				<div class="single_product_item">
-            					<img src="<?= base_url() ?>images/product_1.png" alt="">
+            					<img src="images/product_1.png" alt="">
             					<div class="single_product_text" >
             						<b>Quartz Belt Watch</b>
             						<p>150.000 vnđ</p>
@@ -33,7 +39,7 @@
             			</div>
             			<div class="col-lg-3 col-sm-6">
             				<div class="single_product_item">
-            					<img src="<?= base_url() ?>images/product_2.png" alt="">
+            					<img src="images/product_2.png" alt="">
             					<div class="single_product_text">
             						<b>Quartz Belt Watch</b>
             						<p>150.000 vnđ</p>
@@ -48,7 +54,7 @@
             			</div>
             			<div class="col-lg-3 col-sm-6">
             				<div class="single_product_item">
-            					<img src="<?= base_url() ?>images/product_3.png" alt="">
+            					<img src="images/product_3.png" alt="">
             					<div class="single_product_text">
             						<b>Quartz Belt Watch</b>
             						<p>150.000 vnđ</p>
@@ -63,7 +69,7 @@
             			</div>
             			<div class="col-lg-3 col-sm-6">
             				<div class="single_product_item">
-            					<img src="<?= base_url() ?>images/product_4.png" alt="">
+            					<img src="images/product_4.png" alt="">
             					<div class="single_product_text">
             						<b>Quartz Belt Watch</b>
             						<p>150.000 vnđ</p>
@@ -78,7 +84,7 @@
             			</div>
             			<div class="col-lg-3 col-sm-6">
             				<div class="single_product_item">
-            					<img src="<?= base_url() ?>images/product_5.png" alt="">
+            					<img src="images/product_5.png" alt="">
             					<div class="single_product_text">
             						<b>Quartz Belt Watch</b>
             						<p>150.000 vnđ</p>
@@ -93,7 +99,7 @@
             			</div>
             			<div class="col-lg-3 col-sm-6">
             				<div class="single_product_item">
-            					<img src="<?= base_url() ?>images/product_6.png" alt="">
+            					<img src="images/product_6.png" alt="">
             					<div class="single_product_text">
             						<b>Quartz Belt Watch</b>
             						<p>150.000 vnđ</p>
@@ -108,7 +114,7 @@
             			</div>
             			<div class="col-lg-3 col-sm-6">
             				<div class="single_product_item">
-            					<img src="<?= base_url() ?>images/product_7.png" alt="">
+            					<img src="images/product_7.png" alt="">
             					<div class="single_product_text">
             						<b>Quartz Belt Watch</b>
             						<p>150.000 vnđ</p>
@@ -123,7 +129,7 @@
             			</div>
             			<div class="col-lg-3 col-sm-6">
             				<div class="single_product_item">
-            					<img src="<?= base_url() ?>images/product_8.png" alt="">
+            					<img src="images/product_8.png" alt="">
             					<div class="single_product_text">
             						<b>Quartz Belt Watch</b>
             						<p>150.000 vnđ</p>
@@ -170,5 +176,5 @@
 
 
 <div class="clearfix"></div>
-
+@endsection
 

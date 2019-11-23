@@ -9,22 +9,22 @@
     <base href="{{ asset('') }}">
     <link rel="icon" href="img/favicon.png">
     <!-- Bootstrap css -->
-    <link rel="stylesheet" href="css1/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- animate css -->
-    <link rel="stylesheet" href="css1/animate.css">
+    <link rel="stylesheet" href="css/animate.css">
     <!-- owl carousel css -->
-    <link rel="stylesheet" href="css1/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
     <!-- font awesome css -->
-    <link rel="stylesheet" href="css1/all.css">
+    <link rel="stylesheet" href="css/all.css">
     <!-- flaticon css -->
-    <link rel="stylesheet" href="css1/flaticon.css">
-    <link rel="stylesheet" href="css1/themify-icons.css">
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/themify-icons.css">
     <!-- font awesome css -->
-    <link rel="stylesheet" href="css1/magnific-popup.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
     <!-- swiper css -->
-    <link rel="stylesheet" href="css1/slick.css">
+    <link rel="stylesheet" href="css/slick.css">
     <!-- style css -->
-    <link rel="stylesheet" href="css1/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <!-- bootstrap -->
     <link rel="stylesheet" href="vendor/bootstrap.css">
     <link rel="stylesheet" href="vendor/font-awesome.css">
@@ -60,7 +60,10 @@
             </style> -->
             <style>
                 body {
-                    font-family: "Poppins", sans-serif;
+                  font-family: "Poppins", sans-serif;
+                  padding: 0;
+                  margin: 0;
+                  font-size: 14px;
                 }
                 b{
                     color: black;
@@ -204,7 +207,7 @@
                                                 </li>
                                                 <li class="nav-item dropdown">
                                                     <a class="nav-link " href="{{route('dodungchiase')}}">
-                                                        Đồ dùng chia sẻ
+                                                        Đồ dùng
                                                     </a>
                                                 </li>
                                                 <li class="nav-item">
@@ -226,7 +229,8 @@
                                             </a>
                                             <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
                                                 <a class="dropdown-item" href="{{route('dodungcuatoi',Session('login'))}}">Đồ dùng của tôi</a>
-                                                <!-- <a class="dropdown-item" href="yeuthich.html">Yêu Thích<i class="ti-heart"></i></a> -->
+                                                <a class="dropdown-item" href="{{route('yeucau',Session('login'))}}">Yêu cầu{{-- <i class="ti-heart"></i> --}}</a>
+                                                <a class="dropdown-item" href="{{route('yeuthich',Session('login'))}}">Yêu thích{{-- <i class="ti-heart"></i> --}}</a>
                                                 <a class="dropdown-item" href="{{route('gettttaikhoan',Session('login'))}}"> Thông tin tài khoản</a>
                                                 <a class="dropdown-item" href="{{route('getdoimatkhau')}}">đổi mật khẩu</a>
                                                 <a class="dropdown-item" href="{{ route('dangxuat')}}">thoát</a>
@@ -235,7 +239,7 @@
                                         </li>
                                         @if(Session::has('admin'))
                                         <li class="nav-item">
-                                            <a class="nav-link " href="{{route('quanly')}}"
+                                            <a class="nav-link " href="{{route('duyetdodung')}}"
                                             >
                                             Quản trị
                                         </a>
@@ -266,7 +270,7 @@
                                                         </li>
                                                         <li class="nav-item dropdown">
                                                             <a class="nav-link " href="{{route('dodungchiase')}}">
-                                                                Đồ dùng chia sẻ
+                                                                Đồ dùng
                                                             </a>
                                                         </li>
                                                         <li class="nav-item">
@@ -325,8 +329,15 @@
     @yield('content')
     <!--  -->
     <!--::footer_part start::-->
-    <footer class="footer_part">
+    <footer class="footer_part ftco-footer ftco-section bg-light">
         <div class="container">
+            <div class="row">
+                <div class="mouse">
+                   <a href="#" class="mouse-icon">
+                      <div class="mouse-wheel"><span class="ion-ios-arrow-up"></span></div>
+                   </a>
+                </div>
+            </div>
             <div class="row justify-content-around">
                 <div class="col-sm-6 col-lg-2">
                     <div class="single_footer_part">
@@ -483,7 +494,6 @@
 <script src="other/js/jquery.animateNumber.min.js"></script>
 <script src="other/js/bootstrap-datepicker.js"></script>
 <script src="other/js/scrollax.min.js"></script>
-<script src="other/js/google-map.js"></script>
 <script src="other/js/main.js"></script>
 {{-- het js --}}
 </body>

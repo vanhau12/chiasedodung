@@ -5,25 +5,20 @@
 @stop
 @section('content')
 
-<!--================Home Banner Area =================-->
-<!-- breadcrumb start-->
-<section class="breadcrumb breadcrumb_bg">
-	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-lg-8">
-				<div class="breadcrumb_iner">
-					<div class="breadcrumb_iner_item">
-						<h2>Đổi mật khẩu</h2>
-						<p>Trang chủ <span>-</span> Đổi mật khẩu</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<!-- breadcrumb start-->
+{{-- banner --}}
+<div class="hero-wrap hero-bread" style="background-image: url('img/banner/banner-bg.jpg'); margin-top: 70px;">
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+            <p class="breadcrumbs"><span class="mr-2"><a href="{{route('trangchu')}}">Trang chủ</a></span></p>
+            <h1 class="mb-0 bread">Tài khoản - Đổi mật khẩu</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+{{-- end banner --}}
 
-<!-- phan thong tin tai khoan-->
+<!-- content-->
 <section class="product_list best_seller">
 	<div class="container">
 		<div class="content">

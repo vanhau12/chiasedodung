@@ -1,3 +1,9 @@
+@extends('admin/layout')
+@section('title')
+@parent
+{{$data['title']}}
+@stop
+@section('content')
 <div class="content">
 	<div class="animated fadeIn">
 		<div class="row">
@@ -14,10 +20,10 @@
 				<div class="card-header">
 					<strong class="card-title"><i>Danh sách thành viên</i></strong>
 				</div>
-				<div class="card-body">                       	
+				<div class="card-body">
 					<table id="bootstrap-data-table" class="table table-striped table-bordered">
 						<thead>
-							<tr> 
+							<tr>
 								<th>ID</th>
 								<th>Tên</th>
 								<th>Email</th>
@@ -64,7 +70,7 @@
 							<?php endforeach ?>
 						</tbody>
 					</table>
-					
+
 				</div>
 			</div>
 		</div>
@@ -73,4 +79,4 @@
 
 
 <div class="clearfix"></div>
-
+@endsection

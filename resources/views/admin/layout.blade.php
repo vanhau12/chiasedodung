@@ -34,6 +34,7 @@
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css" rel="stylesheet" />
 
     <!-- css aranoz -->
+    {{-- <link rel="stylesheet" href="css1/style.css"> --}}
 
 
    <style>
@@ -42,6 +43,12 @@
           padding: 0;
           margin: 0;
           font-size: 14px;
+        }
+        .single_product_text h4 {
+          font-weight: 700;
+          font-size: 18px;
+          margin-top: 15px;
+          margin-bottom: 15px;
         }
         p,a {
           font-family: "Poppins", sans-serif;
@@ -95,17 +102,17 @@
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active">
-                        <a href="aaQuanly"><i class="menu-icon fa fa-laptop"></i>Trang chủ </a>
+                        <a href="{{route('trangchu')}}"><i class="menu-icon fa fa-laptop"></i>Trang chủ </a>
                     </li>
                     <li class="menu-title">DANH MỤC QUẢN LÝ</li>
                     <li >
-                        <a href="aaQuanly/duyet_do_dung" class="dropdown-toggle"  aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Danh sách đồ chờ duyệt</a>
+                        <a href="{{route('duyetdodung')}}" class="dropdown-toggle"  aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Danh sách đồ chờ duyệt</a>
                     </li>
                     <li >
-                        <a href="aaQuanly/quan_ly_nguoi_dung" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Quản lý người dùng</a>
+                        <a href="{{route('qlnd')}}" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Quản lý người dùng</a>
                     </li>
                     <li >
-                        <a href="aaQuanly/quan_ly_do_dung" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Quản lý đồ dùng</a>
+                        <a href="{{route('qldd')}}" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Quản lý đồ dùng</a>
                     </li>
                 </ul>
             </div><!-- /.navbar-collapse -->

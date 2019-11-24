@@ -34,7 +34,21 @@ Route::get('/xoa-do-dung/{id}', 'Nguoidung@xoadodung')->name('xoadodung');
 Route::get('/sua-do-dung/{id}', 'Nguoidung@getsuadodung')->name('getsuadodung');
 Route::post('/sua_do_dung/{id}', 'Nguoidung@suadodung')->name('suadodung');
 
+Route::get('/yeu-cau/{id}', 'Nguoidung@yeucau')->name('yeucau');
+Route::get('/chap-nhan/{id}', 'Nguoidung@chapnhan')->name('chapnhan');
+Route::get('/tu-choi/{id}', 'Nguoidung@tuchoi')->name('tuchoi');
+Route::get('/xoa-loi-nhan/{id}', 'Nguoidung@xoaloinhan')->name('xoaloinhan');
+Route::get('/yeu-thich/{id}', 'Nguoidung@yeuthich')->name('yeuthich');
+Route::get('/bo-thich/{id}', 'Nguoidung@bothich')->name('bothich');
+
 
 
 //trang quản lý
 Route::get('/quan-ly', 'Quanly@trangchu')->name('quanly');
+
+Route::get('/duyet-do-dung', 'Quanly@duyetdodung')->name('duyetdodung');
+Route::get('/huy/{id}', 'Quanly@huy')->name('huy');
+Route::get('/duyet/{id}', 'Quanly@duyet')->name('duyet');
+
+Route::get('/quan-ly-nguoi-dung', 'Quanly@qlnd')->name('qlnd');
+Route::get('/quan-ly-do-dung', 'Quanly@qldd')->name('qldd');

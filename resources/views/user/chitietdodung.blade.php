@@ -5,12 +5,12 @@
 @stop
 @section('content')
 {{-- banner --}}
-<div class="hero-wrap hero-bread" style="background-image: url('img/banner/banner-bg.jpg'); margin-top: 70px;">
+<div class="hero-wrap hero-bread" style="background-image: url('img/banner/bn_3.png'); margin-top: 70px;">
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
-            <p class="breadcrumbs"><span class="mr-2"><a href="{{route('trangchu')}}">Trang chủ</a></span></p>
-            <h1 class="mb-0 bread">Chi tiết đồ dùng</h1>
+            <p class="breadcrumbs"><span class="mr-2"><a href="{{route('trangchu')}}" style="color: black">Trang chủ</a></span></p>
+            <h1 class="mb-0 bread" style="color: black">Chi tiết đồ dùng</h1>
           </div>
         </div>
       </div>
@@ -29,12 +29,33 @@
 						</div>
 					</div>
 				</div>
+                <!-- phần yêu thích -->
+
+                <div style="margin-top: 50px">
+                    <form action="{{route('guiyeucau',$data['item']->id)}}" method="post" enctype="multipart/form-data">
+                    @csrf
+                        <div class="form-group">
+                          <label for="comment"><span><b>Lời nhắn:</b></span></label>
+                          <textarea class="form-control" rows="5" name="message"></textarea>
+                        </div>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-success btn-default">Gửi yêu cầu</button>
+                        </div>
+                    </form>
+                </div>
 			</div>
             <div class="col-sm-1">
             </div>
 			<div class="col-sm-6">
 				<div class="s_product_text">
-					<h3>{{ $data['item']->name }}</h3>
+					<h3>{{ $data['item']->name }}
+                        @if(Session::has('like'))
+                        <span style="margin-left: 10px;"><a href="{{route('botim',$data['item']->id)}}" style="color: red"><i class="ti-heart"></i></a></span>
+                        @else
+                        <span style="margin-left: 10px;"><a href="{{route('thich',$data['item']->id)}}"><i class="ti-heart"></i></a></span>
+                        @endif
+
+                    </h3>
 					<p><span>Yêu cầu</span> : {{ $data['item']->request }}</p>
 					<ul class="list">
 						<li>
@@ -59,10 +80,7 @@
                             echo $data['item']->description;
                         @endphp
 					</p>
-    				<!-- phần yêu thích -->
-					<div class="card_area d-flex justify-content-between align-items-center">
-						{{-- <a href="" class="like_us"><i class="ti-heart"></i></a> --}}
-					</div>
+
 				</div>
 			</div>
 		</div>
@@ -87,8 +105,8 @@
 				<div class="best_product_slider owl-carousel">
                     @foreach ($data['topitems'] as $item)
                        <div class="single_product_item">
-                            <img src="{{ asset('') }}/imagesitems/{{ $item->image }}" alt="">
-                            <div class="single_product_text">
+                            <a href="{{route('chitiet',$item->id)}}"><img src="{{ asset('') }}/imagesitems/{{ $item->image }}" alt="">
+                            <div class="single_product_text"></a>
                                 <h4 class="text-center">{{ $item->name }}</h4>
                                 <h3 class="text-center">{{ $item->request }}</h3>
                             </div>
@@ -100,6 +118,7 @@
 	</div>
 </section>
 <!-- product_list part end-->
+
 @endsection
 
 

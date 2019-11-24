@@ -102,7 +102,7 @@
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active">
-                        <a href="{{route('trangchu')}}"><i class="menu-icon fa fa-laptop"></i>Trang chủ </a>
+                        <a href="{{route('trangchu')}}"><i class="menu-icon fa fa-laptop"></i>Quay lại trang chủ </a>
                     </li>
                     <li class="menu-title">DANH MỤC QUẢN LÝ</li>
                     <li >
@@ -112,7 +112,7 @@
                         <a href="{{route('qlnd')}}" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Quản lý người dùng</a>
                     </li>
                     <li >
-                        <a href="{{route('qldd')}}" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Quản lý đồ dùng</a>
+                        <a href="{{route('qldanhmuc')}}" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Quản lý danh mục</a>
                     </li>
                 </ul>
             </div><!-- /.navbar-collapse -->

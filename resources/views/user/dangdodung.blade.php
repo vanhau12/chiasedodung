@@ -53,6 +53,10 @@
                 <input type="text" class="form-control" required name="yeucau" placeholder="(nhập các yêu cầu để chia sẻ như: cho mượn,trao đổi, cho thuê, bán, giá ...)">
             </div>
             <div class="form-group">
+                <label for="">Mô tả tóm tắt</label>
+                <input type="text" class="form-control" required name="introduce" placeholder="(không quá 150 ký tự)">
+            </div>
+            <div class="form-group">
                 <label for="">Địa điểm:</label>
                 <input type="text" class="form-control" required name="place">
             </div>

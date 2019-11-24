@@ -26,6 +26,10 @@ Route::get('/do-dung-chia-se', 'Nguoidung@dodungchiase')->name('dodungchiase');
 Route::get('/danh-muc-do-dung/{id}', 'Nguoidung@danhmuc')->name('danhmuc');
 Route::get('/chi-tiet-do-dung/{id}', 'Nguoidung@chitiet')->name('chitiet');
 
+Route::post('/gui-yeu-cau/{id}', 'Nguoidung@guiyeucau')->name('guiyeucau');
+Route::get('/thich/{id}', 'Nguoidung@thich')->name('thich');
+Route::get('/botim/{id}', 'Nguoidung@botim')->name('botim');
+
 Route::get('/dang-do-dung', 'Nguoidung@getdangdodung')->name('getdangdodung');
 Route::post('/dang_do_dung', 'Nguoidung@dangdodung')->name('dangdodung');
 
@@ -51,4 +55,10 @@ Route::get('/huy/{id}', 'Quanly@huy')->name('huy');
 Route::get('/duyet/{id}', 'Quanly@duyet')->name('duyet');
 
 Route::get('/quan-ly-nguoi-dung', 'Quanly@qlnd')->name('qlnd');
-Route::get('/quan-ly-do-dung', 'Quanly@qldd')->name('qldd');
+Route::get('/them-thanh-vien', 'Quanly@getthemtv')->name('getthemtv');
+Route::post('/them_thanh_vien', 'Quanly@themtv')->name('themtv');
+Route::get('/xoa-nguoi-dung/{id}', 'Quanly@xoanguoidung')->name('xoanguoidung');
+
+Route::get('/quan-ly-danh-muc', 'Quanly@qldanhmuc')->name('qldanhmuc');
+Route::post('/them_danh_muc', 'Quanly@themdanhmuc')->name('themdanhmuc');
+Route::get('/xoa-danh-muc/{id}', 'Quanly@xoadanhmuc')->name('xoadanhmuc');

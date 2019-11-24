@@ -133,6 +133,12 @@ class Nguoidung extends Controller
 
     public function chitiet($id)
     {
+        $thich = DB::table('cart')->where('user_id',Session('login'))->where('item_id',$id)->first();
+        if(!is_null($thich)){
+            Session::put('like',$thich->id);
+        }else{
+            Session::forget('like');
+        }
         $item = DB::table('item')->where('id',$id)->first();
         $data['title'] = "Chi tiết đồ dùng";
         $data['item'] = $item;
@@ -146,6 +152,39 @@ class Nguoidung extends Controller
         $data['user'] = DB::table('user')->where('id',$item->user_id)->first();
         return view('user.chitietdodung',['data'=>$data]);
     }
+    public function guiyeucau($id,Request $req)
+    {
+        $contact = DB::table('contact')->where('item_id',$id)->where('petitioner',Session('login'))->first();
+        if(!is_null($contact)){
+            echo "<script type='text/javascript'>var r = confirm('Bạn đã gửi yêu cầu! Vào mục Yêu cầu để xem lại!');if(r){document.location = '".route('chitiet',$id). "';  }</script>";
+        }else{
+            $a = DB::table('item')->where('id',$id)->first();
+            DB::table('contact')->insert([
+                'item_id'=>$id,
+                'petitioner'=>Session('login'),
+                'acceptor'=>$a->user_id,
+                'message'=>$req->message,
+                'status'=>0,
+                'accept_date'=>0
+            ]);
+            echo "<script type='text/javascript'>var r = confirm('Gửi yêu cầu thành công!');if(r){document.location = '".route('chitiet',$id). "';  }</script>";
+        }
+    }
+    public function thich($id)
+    {
+        DB::table('cart')->insert([
+            'user_id'=>Session('login'),
+            'item_id'=>$id,
+        ]);
+        return redirect()->route('chitiet',$id);
+    }
+    public function botim($id)
+    {
+        DB::table('cart')->where('user_id',Session('login'))->where('item_id',$id)->delete();
+        return redirect()->route('chitiet',$id);
+    }
+
+
     public function getdangdodung()
     {
         $data['title'] = "Chia sẻ đồ dùng";
@@ -168,10 +207,12 @@ class Nguoidung extends Controller
             'user_id'=>Session('login'),
             'name'=>$req->name,
             'request'=>$req->yeucau,
+            'introduce'=>$req->introduce,
             'image'=>$image,
             'place'=>$req->place,
             'description'=>$req->des,
             'view'=>0,
+            'liked'=>0,
             'status'=>1
         ]);
         return redirect()->route('getdangdodung')->with('success', 'Chia sẻ đồ dùng thành công! Chờ xét duyệt!');
@@ -210,10 +251,12 @@ class Nguoidung extends Controller
             'user_id'=>Session('login'),
             'name'=>$req->name,
             'request'=>$req->yeucau,
+            'introduce'=>$req->introduce,
             'image'=>$image,
             'place'=>$req->place,
             'description'=>$req->des,
             'view'=>0,
+            'liked'=>0,
             'status'=>1
         ]);
         } else {
@@ -222,9 +265,11 @@ class Nguoidung extends Controller
             'user_id'=>Session('login'),
             'name'=>$req->name,
             'request'=>$req->yeucau,
+            'introduce'=>$req->introduce,
             'place'=>$req->place,
             'description'=>$req->des,
             'view'=>0,
+            'liked'=>0,
             'status'=>1
             ]);
         }
@@ -271,7 +316,7 @@ class Nguoidung extends Controller
     }
     public function tuchoi($id)
     {
-        // đổi tt liên hệ sang 2 = từ chối
+        // đổi tt liên hệ sang -1 = từ chối
         DB::table('contact')->where('id',$id)->update([
             'status'=>2
             ]);
@@ -300,7 +345,7 @@ class Nguoidung extends Controller
         }
         return view('user.yeuthich',['data'=>$data]);
     }
-     public function bothich($id)
+    public function bothich($id)
     {
         DB::table('cart')->where('id',$id)->delete();
         return redirect()->route('yeuthich',Session('login'));

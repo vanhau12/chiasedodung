@@ -11,7 +11,7 @@
 			<div class="col-md-4">
 				<div class="card" style="background: #6699FF">
 					<div class="btn">
-						<a href="Nguoidung/them_thanh_vien" style="color: white"><b>Thêm thành viên</b></a>
+						<a href="{{route('getthemtv')}}" style="color: white"><b>Thêm thành viên</b></a>
 					</div>
 				</div>
 			</div>
@@ -34,14 +34,14 @@
 							</tr>
 						</thead>
 						<tbody>
-							<?php foreach ($user as $value): ?>
+							<?php foreach ($data['user'] as $value): ?>
 							<tr>
-								<td><?= $value['id'] ?></td>
-								<td><?= $value['name'] ?></td>
-								<td><?= $value['email'] ?></td>
-								<td><?= $value['password'] ?></td>
-								<td><?= $value['phone'] ?></td>
-								<td><?php switch ($value['permission']) {
+								<td>{{ $value->id }}</td>
+								<td>{{ $value->name }}</td>
+								<td>{{ $value->email }}</td>
+								<td>{{ $value->password }}</td>
+								<td>{{ $value->phone }}</td>
+								<td><?php switch ($value->permission) {
 									case '0':
 									echo 'Khách hàng';
 									break;
@@ -54,7 +54,7 @@
 								}
 								?></td>
 								<td>
-									<button style="background: red"><a id="btn" href="Quanly/xoaUser/<?= $value['id'] ?>" ><i class="fa fa-times"  style="color: white;"></i></a></button>
+									<button style="background: red"><a id="btn" href={{route('xoanguoidung',$value->id)}} ><i class="fa fa-times"  style="color: white;"></i></a></button>
 								</td>
 							</tr>
 

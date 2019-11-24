@@ -7,7 +7,7 @@
 
 
 {{-- banner --}}
-<div class="hero-wrap hero-bread" style="background-image: url('img/banner/banner-bg.jpg'); margin-top: 70px;">
+<div class="hero-wrap hero-bread" style="background-image: url('img/banner/bn_1.jpg'); margin-top: 70px;">
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">

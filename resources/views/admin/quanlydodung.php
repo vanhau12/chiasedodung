@@ -15,7 +15,7 @@
             		</div>
             	</div>
             	<div class="col-lg-12">
-            		<div class="row align-items-center latest_product_inner">
+            		<div class="row latest_product_inner">
             			<div class="col-lg-3 col-sm-6">
             				<div class="single_product_item">
             					<img src="<?= base_url() ?>images/product_1.png" alt="">

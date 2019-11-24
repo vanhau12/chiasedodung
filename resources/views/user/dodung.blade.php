@@ -108,7 +108,7 @@
    					<!-- danh sách item -->
    					<div class="col-lg-12">
    						<div class="container">
-   							<div class="row align-items-center latest_product_inner">
+   							<div class="row latest_product_inner">
    								<?php foreach ($data['items'] as $item): ?>
    									<div class="col-sm-4">
    										<div class="card-body">

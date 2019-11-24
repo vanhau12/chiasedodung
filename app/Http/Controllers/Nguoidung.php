@@ -11,7 +11,8 @@ class Nguoidung extends Controller
     public function trangchu()
     {
         $data['title'] = "Trang chủ";
-        $data['topitems'] = DB::table('item')->orderBy('view', 'DESC')->limit(5)->get();
+        $data['newitems'] = DB::table('item')->where('status',0)->orderBy('id', 'DESC')->limit(5)->get();
+        $data['topitems'] = DB::table('item')->where('status',0)->orderBy('view', 'DESC')->limit(5)->get();
         return view('user.trangchu',['data'=>$data]);
     }
 

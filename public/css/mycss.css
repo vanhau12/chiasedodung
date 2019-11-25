@@ -1,0 +1,56 @@
+.banner_part .banner-wrap {
+    position: relative;
+    background: url('../img/banner/bn.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 600px;
+    width: 100vw;
+    margin-top: 84px;
+}
+
+.banner_part .blur {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: #666;
+    opacity: 0.5;
+    z-index: 1;
+}
+
+.banner_part .banner-content {
+    position: relative;
+    z-index: 10;
+    color: #fff;
+}
+
+.banner_part .banner-content {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner_part .banner-content .title {
+    margin-top: 5rem;
+    font-size: 4rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.banner_part .banner-content .desc {
+    margin-top: 2.5rem;
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+.best_product_slider.owl-carousel .owl-item img {
+    height: 192px;
+    object-fit: cover;
+}
+
+.main_menu {
+    position: fixed!important;
+}

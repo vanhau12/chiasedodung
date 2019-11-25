@@ -24,6 +24,7 @@ Route::get('/doi-mat-khau', 'Nguoidung@getdoimatkhau')->name('getdoimatkhau')->m
 Route::post('/doi_mat_khau/{id}', 'Nguoidung@doimatkhau')->name('doimatkhau')->middleware('login');
 
 Route::get('/do-dung-chia-se', 'Nguoidung@dodungchiase')->name('dodungchiase');
+Route::post('/tim-kiem-do-dung', 'Nguoidung@timkiem')->name('timkiem');
 Route::get('/danh-muc-do-dung/{id}', 'Nguoidung@danhmuc')->name('danhmuc');
 Route::get('/chi-tiet-do-dung/{id}', 'Nguoidung@chitiet')->name('chitiet');
 

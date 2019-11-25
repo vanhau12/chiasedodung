@@ -6,81 +6,13 @@
 @section('content')
     <!-- banner part start-->
     <section class="banner_part">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-12">
-                    <div class="banner_slider owl-carousel">
-                        <div class="single_banner_slider">
-                            <div class="row">
-                                <div class="col-lg-5 col-md-8">
-                                    <div class="banner_text">
-                                        <div class="banner_text_iner">
-                                            <h1>Gia Đình & Học Tập</h1>
-                                            <p>Incididunt ut labore et dolore magna aliqua quis ipsum
-                                                suspendisse ultrices gravida. Risus commodo viverra</p>
-                                           <!--  <a href="#" class="btn_2">buy now</a> -->
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="banner_img d-none d-lg-block">
-                                    <img src="img/banner_img.png" alt="">
-                                </div>
-                            </div>
-                        </div><div class="single_banner_slider">
-                            <div class="row">
-                                <div class="col-lg-5 col-md-8">
-                                    <div class="banner_text">
-                                        <div class="banner_text_iner">
-                                            <h1>Cloth & Wood
-                                                Sofa</h1>
-                                            <p>Incididunt ut labore et dolore magna aliqua quis ipsum
-                                                suspendisse ultrices gravida. Risus commodo viverra</p>
-                                            <!-- <a href="#" class="btn_2">buy now</a> -->
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="banner_img d-none d-lg-block">
-                                    <img src="img/banner_img.png" alt="">
-                                </div>
-                            </div>
-                        </div><div class="single_banner_slider">
-                            <div class="row">
-                                <div class="col-lg-5 col-md-8">
-                                    <div class="banner_text">
-                                        <div class="banner_text_iner">
-                                            <h1>Wood & Cloth
-                                                Sofa</h1>
-                                            <p>Incididunt ut labore et dolore magna aliqua quis ipsum
-                                                suspendisse ultrices gravida. Risus commodo viverra</p>
-                                            <!-- <a href="#" class="btn_2">buy now</a> -->
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="banner_img d-none d-lg-block">
-                                    <img src="img/banner_img.png" alt="">
-                                    <img src="">
-                                </div>
-                            </div>
-                        </div>
-                        <!-- <div class="single_banner_slider">
-                            <div class="row">
-                                <div class="col-lg-5 col-md-8">
-                                    <div class="banner_text">
-                                        <div class="banner_text_iner">
-                                            <h1>Cloth $ Wood Sofa</h1>
-                                            <p>Incididunt ut labore et dolore magna aliqua quis ipsum
-                                                suspendisse ultrices gravida. Risus commodo viverra</p>
-                                            <a href="#" class="btn_2">buy now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="banner_img d-none d-lg-block">
-                                    <img src="img/banner_img.png" alt="">
-                                </div>
-                            </div>
-                        </div> -->
-                    </div>
-                    <div class="slider-counter"></div>
+        {{-- Start: bg warp --}}
+        <div class="banner-wrap">
+            <div class="blur"></div>
+            <div class="banner-content">
+                <div>
+                    <div class="title">Chia sẻ đồ dùng</div>
+                    <div class="desc">Cho đi càng nhiều - Nhận lại càng nhiều</div>
                 </div>
             </div>
         </div>
@@ -88,7 +20,7 @@
     <!-- banner part start-->
 
     <!-- feature_part start-->
-    <section class="feature_part padding_top">
+    {{-- <section class="feature_part padding_top">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
@@ -133,7 +65,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- upcoming_event part start-->
 
     <!-- product_list start-->
@@ -151,7 +83,7 @@
                     <div class="best_product_slider owl-carousel">
                         @foreach ($data['newitems'] as $item)
                             <div class="single_product_item">
-                            <a href="{{route('chitiet',$item->id)}}"></a><img src="imagesitems/{{ $item->image}}" alt="">
+                            <a href="{{route('chitiet',$item->id)}}"><img src="imagesitems/{{ $item->image}}" alt=""></a>
                             <div class="single_product_text text-center">
                                 <h4>{{ $item->name}}</h4>
                                 <h3>{{ $item->request}}</h3>
@@ -195,12 +127,6 @@
 	</section> --}}
 	<!-- End Top view -->
 
-    {{-- banner start --}}
-    <div class="container">
-           <img src="img/banner_test.jpg" alt="" style="width: 1200px">
-    </div>
-    {{-- end banner --}}
-
 	 <!-- product_list part start-->
     <section class="product_list best_seller section_padding">
         <div class="container">
@@ -212,11 +138,11 @@
                 </div>
             </div>
             <div class="row align-items-center justify-content-between">
-                <div class="col-lg-12">
+                <div class="col-lg-12 px-0">
                     <div class="best_product_slider owl-carousel">
                         @foreach ($data['topitems'] as $item)
                             <div class="single_product_item">
-                            <a href="{{route('chitiet',$item->id)}}"></a><img src="imagesitems/{{ $item->image}}" alt="">
+                            <a href="{{route('chitiet',$item->id)}}"><img src="imagesitems/{{ $item->image}}" alt=""></a>
                             <div class="single_product_text text-center">
                                 <h4>{{ $item->name}}</h4>
                                 <h3>{{ $item->request}}</h3>
@@ -238,14 +164,13 @@
             <div class="row justify-content-center">
                 <div class="col-lg-7">
                     <div class="subscribe_area_text text-center">
-                        <h5>Join Our Newsletter</h5>
-                        <h2>Subscribe to get Updated
-                            with new offers</h2>
+                        <h5>Tham gia cùng chúng tôi</h5>
+                        <h2>Đăng ký ngay</h2>
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="enter email address"
                                 aria-label="Recipient's username" aria-describedby="basic-addon2">
                             <div class="input-group-append">
-                                <a href="#" class="input-group-text btn_2" id="basic-addon2">subscribe now</a>
+                                <a href="" class="input-group-text btn_2" id="basic-addon2">Đăng ký</a>
                             </div>
                         </div>
                     </div>

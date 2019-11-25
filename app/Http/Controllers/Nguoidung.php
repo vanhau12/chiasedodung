@@ -120,6 +120,17 @@ class Nguoidung extends Controller
         $data['tongso'] = count(DB::table('item')->where('status',0)->get());
         return view('user.dodung',['data'=>$data]);
     }
+    public function timkiem(Request $req)
+    {
+        $data['title'] = "Đồ dùng chia sẻ";
+        $data['types'] = DB::table('type_item')->get();
+        $data['items'] = DB::table('item')->where('status',0)->where('name', 'like', $req->name)->paginate(5);
+        $data['topitems'] = DB::table('item')->orderBy('view', 'DESC')->limit(5)->get();
+        $data['places'] = array('Hà Nội','Hải Phòng','TP.Hồ Chí Minh');
+
+        $data['tongso'] = count(DB::table('item')->where('status',0)->where('name', 'like', $req->name)->get());
+        return view('user.dodung',['data'=>$data]);
+    }
     public function danhmuc($type_id)
     {
         $data['title'] = "Đồ dùng chia sẻ";

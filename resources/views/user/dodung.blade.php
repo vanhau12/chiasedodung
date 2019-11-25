@@ -62,10 +62,17 @@
       {{-- seach --}}
       <div class="col-lg-4 sidebar ftco-animate">
          <div class="sidebar-box">
-           <form action="#" class="search-form">
+           <form action="{{route('timkiem')}}" class="search-form" method="post" enctype="multipart/form-data">
+            @csrf
              <div class="form-group">
-               <span class="icon ion-ios-search"></span>
-               <input type="text" class="form-control" placeholder="Search...">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <input type="text" name="name" class="form-control" placeholder="Search...">
+                    </div>
+                    <div class="col-sm-4">
+                       <button type="submit" class="btn btn-success btn-default"><span class="ion-ios-search"></span></button>
+                    </div>
+                </div>
             </div>
          </form>
       </div>

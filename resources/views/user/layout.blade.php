@@ -53,6 +53,8 @@
     <link rel="stylesheet" href="other/css/flaticon.css">
     <link rel="stylesheet" href="other/css/icomoon.css">
     <link rel="stylesheet" href="other/css/style.css">
+    {{-- Css nay để đè hết các css của thư viện --}}
+    <link rel="stylesheet" href="css/mycss.css">
     {{-- het link --}}
 
         <!-- <style type="text/css" >
@@ -193,7 +195,7 @@
                                 <div class="row align-items-center">
                                     <div class="col-lg-12">
                                         <nav class="navbar navbar-expand-lg navbar-light">
-                                            <a class="navbar-brand" href="index.html"> <img src="img/logo.png" alt="logo"> </a>
+                                            <a class="navbar-brand" href="{{route('trangchu')}}"> <img src="" alt="logo"> </a>
                                             <button class="navbar-toggler" type="button" data-toggle="collapse"
                                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                                             aria-expanded="false" aria-label="Toggle navigation">
@@ -341,11 +343,10 @@
             <div class="row justify-content-around">
                 <div class="col-sm-6 col-lg-2">
                     <div class="single_footer_part">
-                        <h4>Top Người dùng</h4>
+                        <h4>Thực hiện bởi</h4>
                         <ul class="list-unstyled">
-                            <li><a href="">Nguyễn Văn Bình</a></li>
-                            <li><a href="">Trịnh Tâm</a></li>
-                            <li><a href="">Vũ Hồng</a></li>
+                            <li><a href="https://www.facebook.com/hauvv.dp">Vương Văn Hậu</a></li>
+                            <li><a href="https://www.facebook.com/tranphuongttbn">Trần Thị Phương</a></li>
                         </ul>
                     </div>
                 </div>
@@ -404,7 +405,7 @@
         </div>
 
     </div>
-    <div class="copyright_part">
+    {{-- <div class="copyright_part">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
@@ -426,7 +427,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </footer>
     <!--::footer_part end::-->
 
